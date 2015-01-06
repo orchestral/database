@@ -15,7 +15,9 @@ class MigrationServiceProvider extends ServiceProvider
         $this->app->singleton('command.migrate', function ($app) {
             $packagePath = $app['path.base'].'/vendor';
 
-            return new MigrateCommand($app['migrator'], $packagePath);
+            $command = new MigrateCommand($app['migrator']);
+
+            return $command->setPackagePath($packagePath);
         });
     }
 }
