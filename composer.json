@@ -1,0 +1,28 @@
+{
+	"name": "orchestra/database",
+	"description": "Database Component for Orchestra Platform",
+	"license": "MIT",
+	"authors": [
+		{
+			"name": "Mior Muhammad Zaki",
+			"email": "crynobone@gmail.com",
+			"homepage": "https://github.com/crynobone"
+		}
+	],
+	"autoload": {
+		"psr-4": {
+			"Orchestra\\Database\\": ""
+		}
+	},
+	"require": {
+		"php": ">=5.4.0",
+		"illuminate/contracts": "5.0.*",
+		"illuminate/database": "5.0.*"
+	},
+	"extra": {
+		"branch-alias": {
+			"dev-master": "3.0-dev"
+		}
+	},
+	"minimum-stability": "dev"
+}
