@@ -4,6 +4,11 @@
 	"license": "MIT",
 	"authors": [
 		{
+			"name": "Taylor Otwell",
+			"email": "taylorotwell@gmail.com",
+			"homepage": "https://github.com/taylorotwell"
+		},
+		{
 			"name": "Mior Muhammad Zaki",
 			"email": "crynobone@gmail.com",
 			"homepage": "https://github.com/crynobone"
