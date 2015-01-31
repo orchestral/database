@@ -21,12 +21,12 @@
 	},
 	"require": {
 		"php": ">=5.4.0",
-		"illuminate/contracts": "5.0.*",
-		"illuminate/database": "5.0.*"
+		"illuminate/contracts": "5.1.*",
+		"illuminate/database": "5.1.*"
 	},
 	"extra": {
 		"branch-alias": {
-			"dev-master": "3.0-dev"
+			"dev-master": "3.1-dev"
 		}
 	},
 	"support": {
