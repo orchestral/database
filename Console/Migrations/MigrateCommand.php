@@ -69,13 +69,16 @@ class MigrateCommand extends BaseCommand
      */
     protected function getMigrationPath()
     {
-        $package = $this->input->getOption('package');
         $path = $this->input->getOption('path');
+
+        if (! is_null($fullPath = $this->input->getOption('real-path'))) {
+            return $fullPath;
+        }
 
         // If the package is in the list of migration paths we received we will put
         // the migrations in that path. Otherwise, we will assume the package is
         // is in the package directories and will place them in that location.
-        if (! is_null($package)) {
+        if (! is_null($package = $this->input->getOption('package'))) {
             is_null($path) && $path = 'resources/migrations';
 
             return $this->packagePath.'/'.$package.'/'.$path;
@@ -101,6 +104,7 @@ class MigrateCommand extends BaseCommand
         return [
             ['database', null, InputOption::VALUE_OPTIONAL, 'The database connection to use.'],
             ['force', null, InputOption::VALUE_NONE, 'Force the operation to run when in production.'],
+            ['real-path', null, InputOption::VALUE_OPTIONAL, 'The absolute path to migration files.', null],
             ['path', null, InputOption::VALUE_OPTIONAL, 'The path to migration files.', null],
             ['package', null, InputOption::VALUE_OPTIONAL, 'The package to migrate.', null],
             ['pretend', null, InputOption::VALUE_NONE, 'Dump the SQL queries that would be run.'],
