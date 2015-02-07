@@ -26,6 +26,43 @@ class MigrateCommand extends BaseCommand
     }
 
     /**
+     * Execute the console command.
+     *
+     * @return void
+     */
+    public function fire()
+    {
+        if (! $this->confirmToProceed()) {
+            return;
+        }
+
+        $this->prepareDatabase();
+
+        // The pretend option can be used for "simulating" the migration and grabbing
+        // the SQL queries that would fire if the migration were to be run against
+        // a database for real, which is helpful for double checking migrations.
+        $pretend = $this->input->getOption('pretend');
+
+        $path = $this->getMigrationPath();
+
+        $this->migrator->run($path, $pretend);
+
+        // Once the migrator has run we will grab the note output and send it out to
+        // the console screen, since the migrator itself functions without having
+        // any instances of the OutputInterface contract passed into the class.
+        foreach ($this->migrator->getNotes() as $note) {
+            $this->output->writeln($note);
+        }
+
+        // Finally, if the "seed" option has been given, we will re-run the database
+        // seed task to re-populate the database, which is convenient when adding
+        // a migration and a seed at the same time, as it is only this command.
+        if ($this->input->getOption('seed')) {
+            $this->call('db:seed', ['--force' => true]);
+        }
+    }
+
+    /**
      * Get the path to the migration directory.
      *
      * @return string
