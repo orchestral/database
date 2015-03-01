@@ -71,7 +71,7 @@ class CacheDecorator
      * @param  array   $columns
      * @return mixed|static
      */
-    public function first($columns = array('*'))
+    public function first($columns = ['*'])
     {
         $this->query->take(1);
 
@@ -90,7 +90,7 @@ class CacheDecorator
      * @param  array  $columns
      * @return array|static[]
      */
-    public function get($columns = array('*'))
+    public function get($columns = ['*'])
     {
         if (! is_null($this->cacheMinutes)) {
             return $this->getCached($columns);
@@ -105,7 +105,7 @@ class CacheDecorator
      * @param  array  $columns
      * @return array
      */
-    public function getCached($columns = array('*'))
+    public function getCached($columns = ['*'])
     {
         // If the query is requested to be cached, we will cache it using a unique key
         // for this database connection and query statement, including the bindings
@@ -132,7 +132,7 @@ class CacheDecorator
      * @param  array  $columns
      * @return array|static[]
      */
-    public function getFresh($columns = array('*'))
+    public function getFresh($columns = ['*'])
     {
         return $this->query->get($columns);
     }
