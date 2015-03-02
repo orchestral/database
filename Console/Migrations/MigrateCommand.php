@@ -16,6 +16,7 @@ class MigrateCommand extends BaseCommand
      * Set package path.
      *
      * @param  string  $packagePath
+     *
      * @return $this
      */
     public function setPackagePath($packagePath)
