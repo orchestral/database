@@ -36,7 +36,7 @@ class CacheDecorator
     public function __construct($query, Repository $repository)
     {
         $this->repository = $repository;
-        $this->query = $query;
+        $this->query      = $query;
     }
 
     /**
@@ -44,12 +44,13 @@ class CacheDecorator
      *
      * @param  \DateTime|int  $minutes
      * @param  string  $key
+     *
      * @return $this
      */
     public function remember($minutes, $key = null)
     {
         $this->cacheMinutes = $minutes;
-        $this->cacheKey = $key;
+        $this->cacheKey     = $key;
 
         return $this;
     }
@@ -58,6 +59,7 @@ class CacheDecorator
      * Indicate that the query results should be cached forever.
      *
      * @param  string  $key
+     *
      * @return $this
      */
     public function rememberForever($key = null)
@@ -69,6 +71,7 @@ class CacheDecorator
      * Execute the query and get the first result.
      *
      * @param  array   $columns
+     *
      * @return mixed|static
      */
     public function first($columns = ['*'])
@@ -88,6 +91,7 @@ class CacheDecorator
      * Execute the query as a "select" statement.
      *
      * @param  array  $columns
+     *
      * @return array|static[]
      */
     public function get($columns = ['*'])
@@ -103,6 +107,7 @@ class CacheDecorator
      * Execute the query as a cached "select" statement.
      *
      * @param  array  $columns
+     *
      * @return array
      */
     public function getCached($columns = ['*'])
@@ -130,6 +135,7 @@ class CacheDecorator
      * Execute the query as a fresh "select" statement.
      *
      * @param  array  $columns
+     *
      * @return array|static[]
      */
     public function getFresh($columns = ['*'])
@@ -173,6 +179,7 @@ class CacheDecorator
      * Get the Closure callback used when caching queries.
      *
      * @param  array  $columns
+     *
      * @return \Closure
      */
     protected function getCacheCallback($columns)
@@ -197,6 +204,7 @@ class CacheDecorator
      *
      * @param  string  $method
      * @param  array   $parameters
+     *
      * @return mixed
      */
     public function __call($method, $parameters)
