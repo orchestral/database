@@ -1,6 +1,7 @@
 {
 	"name": "orchestra/database",
 	"description": "Database Component for Orchestra Platform",
+	"keywords": ["orchestra-platform", "orchestral", "database"],
 	"license": "MIT",
 	"authors": [
 		{
@@ -26,7 +27,7 @@
 	},
 	"extra": {
 		"branch-alias": {
-			"dev-master": "3.1-dev"
+			"dev-master": "3.2-dev"
 		}
 	},
 	"support": {
