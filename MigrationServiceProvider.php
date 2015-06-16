@@ -13,9 +13,9 @@ class MigrationServiceProvider extends ServiceProvider
     protected function registerMigrateCommand()
     {
         $this->app->singleton('command.migrate', function ($app) {
-            $packagePath = $app['path.base'].'/vendor';
+            $packagePath = $app->basePath().'/vendor';
 
-            $command = new MigrateCommand($app['migrator']);
+            $command = new MigrateCommand($app->make('migrator'));
 
             return $command->setPackagePath($packagePath);
         });
