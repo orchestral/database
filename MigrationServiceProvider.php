@@ -1,5 +1,6 @@
 <?php namespace Orchestra\Database;
 
+use Illuminate\Contracts\Foundation\Application;
 use Orchestra\Database\Console\Migrations\MigrateCommand;
 use Illuminate\Database\MigrationServiceProvider as ServiceProvider;
 
@@ -12,7 +13,7 @@ class MigrationServiceProvider extends ServiceProvider
      */
     protected function registerMigrateCommand()
     {
-        $this->app->singleton('command.migrate', function ($app) {
+        $this->app->singleton('command.migrate', function (Application $app) {
             $packagePath = $app->basePath().'/vendor';
 
             $command = new MigrateCommand($app->make('migrator'));
