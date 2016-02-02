@@ -209,6 +209,6 @@ class CacheDecorator
      */
     public function __call($method, $parameters)
     {
-        return call_user_func_array([$this->query, $method], $parameters);
+        return call_user_func([$this->query, $method], ...$parameters);
     }
 }
