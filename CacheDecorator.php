@@ -74,7 +74,7 @@ class CacheDecorator
      * @param  string|null  $key
      * @return array
      */
-    public function lists($column, $key = null)
+    public function pluck($column, $key = null)
     {
         $results = $this->get(is_null($key) ? [$column] : [$column, $key]);
         // If the columns are qualified with a table or have an alias, we cannot use
@@ -86,6 +86,21 @@ class CacheDecorator
             $this->stripTableForPluck($key)
         );
     }
+
+    /**
+     * Alias for the "pluck" method.
+     *
+     * @param  string  $column
+     * @param  string|null  $key
+     * @return array
+     *
+     * @deprecated since version 5.2. Use the "pluck" method directly.
+     */
+    public function lists($column, $key = null)
+    {
+        return $this->pluck($column, $key);
+    }
+
     /**
      * Strip off the table name or alias from a column identifier.
      *
