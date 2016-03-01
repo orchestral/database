@@ -68,6 +68,36 @@ class CacheDecorator
     }
 
     /**
+     * Get an array with the values of a given column.
+     *
+     * @param  string  $column
+     * @param  string|null  $key
+     * @return array
+     */
+    public function lists($column, $key = null)
+    {
+        $results = $this->get(is_null($key) ? [$column] : [$column, $key]);
+        // If the columns are qualified with a table or have an alias, we cannot use
+        // those directly in the "pluck" operations since the results from the DB
+        // are only keyed by the column itself. We'll strip the table out here.
+        return Arr::pluck(
+            $results,
+            $this->stripTableForPluck($column),
+            $this->stripTableForPluck($key)
+        );
+    }
+    /**
+     * Strip off the table name or alias from a column identifier.
+     *
+     * @param  string  $column
+     * @return string|null
+     */
+    protected function stripTableForPluck($column)
+    {
+        return is_null($column) ? $column : last(preg_split('~\.| ~', $column));
+    }
+
+    /**
      * Execute the query and get the first result.
      *
      * @param  array   $columns
