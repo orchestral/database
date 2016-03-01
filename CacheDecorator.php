@@ -73,6 +73,7 @@ class CacheDecorator
      *
      * @param  string  $column
      * @param  string|null  $key
+     *
      * @return array
      */
     public function lists($column, $key = null)
@@ -91,6 +92,7 @@ class CacheDecorator
      * Strip off the table name or alias from a column identifier.
      *
      * @param  string  $column
+     *
      * @return string|null
      */
     protected function stripTableForPluck($column)
