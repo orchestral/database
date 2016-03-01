@@ -10,14 +10,12 @@ class CachableQueryServiceProvider extends ServiceProvider
      */
     public function register()
     {
-        $cache = $this->app->make('cache.store');
-
-        QueryBuilder::macro('remember', function ($duration, $key = null) use ($cache) {
-            return (new CacheDecorator($this, $cache))->remember($duration, $key);
+        QueryBuilder::macro('remember', function ($duration, $key = null) {
+            return (new CacheDecorator($this, $this->app->make('cache.store')))->remember($duration, $key);
         });
 
-        QueryBuilder::macro('rememberForever', function ($key = null) use ($cache) {
-            return (new CacheDecorator($this, $cache))->rememberForever($key);
+        QueryBuilder::macro('rememberForever', function ($key = null) {
+            return (new CacheDecorator($this, $this->app->make('cache.store')))->rememberForever($key);
         });
     }
 }
