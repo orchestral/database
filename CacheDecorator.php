@@ -73,6 +73,7 @@ class CacheDecorator
      *
      * @param  string  $column
      * @param  string|null  $key
+     *
      * @return array
      */
     public function pluck($column, $key = null)
@@ -93,6 +94,7 @@ class CacheDecorator
      *
      * @param  string  $column
      * @param  string|null  $key
+     *
      * @return array
      *
      * @deprecated since version 5.2. Use the "pluck" method directly.
@@ -106,6 +108,7 @@ class CacheDecorator
      * Strip off the table name or alias from a column identifier.
      *
      * @param  string  $column
+     *
      * @return string|null
      */
     protected function stripTableForPluck($column)
