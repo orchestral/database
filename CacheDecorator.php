@@ -1,4 +1,6 @@
-<?php namespace Orchestra\Database;
+<?php
+
+namespace Orchestra\Database;
 
 use Illuminate\Support\Arr;
 use Illuminate\Support\Collection;

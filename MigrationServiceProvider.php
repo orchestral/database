@@ -1,4 +1,6 @@
-<?php namespace Orchestra\Database;
+<?php
+
+namespace Orchestra\Database;
 
 use Illuminate\Contracts\Foundation\Application;
 use Orchestra\Database\Console\Migrations\MigrateCommand;
