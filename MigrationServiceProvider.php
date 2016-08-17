@@ -17,11 +17,31 @@ class MigrationServiceProvider extends ServiceProvider
     protected function registerMigrateCommand()
     {
         $this->app->singleton('command.migrate', function (Application $app) {
-            $packagePath = $app->basePath().'/vendor';
+            return $this->getCommandWithPackage(new MigrateCommand($app->make('migrator'));
+        });
+    }
 
-            $command = new MigrateCommand($app->make('migrator'));
+    /**
+     * Register the "rollback" migration command.
+     *
+     * @return void
+     */
+    protected function registerRollbackCommand()
+    {
+        $this->app->singleton('command.migrate.rollback', function ($app) {
+            return $this->getCommandWithPackage(new RollbackCommand($app->make('migrator')));
+        });
+    }
 
-            return $command->setPackagePath($packagePath);
+    /**
+     * Register the "reset" migration command.
+     *
+     * @return void
+     */
+    protected function registerResetCommand()
+    {
+        $this->app->singleton('command.migrate.reset', function ($app) {
+            return $this->getCommandWithPackage(new ResetCommand($app->make('migrator')));
         });
     }
 
@@ -35,5 +55,18 @@ class MigrationServiceProvider extends ServiceProvider
         $this->app->singleton('command.migrate.refresh', function () {
             return new RefreshCommand();
         });
+    }
+
+    /**
+     * Set package path for command.
+     *
+     * @param  object  $command
+     * @return object
+     */
+    protected function getCommandWithPackage($command)
+    {
+        $packagePath = $this->app->basePath().'/vendor';
+
+        return $command->setPackagePath($packagePath);
     }
 }

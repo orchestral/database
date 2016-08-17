@@ -2,10 +2,9 @@
 
 namespace Orchestra\Database\Console\Migrations;
 
-use Symfony\Component\Console\Input\InputOption;
-use Illuminate\Database\Console\Migrations\MigrateCommand as BaseCommand;
+use Illuminate\Database\Console\Migrations\RollbackCommand as BaseCommand;
 
-class MigrateCommand extends BaseCommand
+class RollbackCommand extends BaseCommand
 {
     use Packages;
 
