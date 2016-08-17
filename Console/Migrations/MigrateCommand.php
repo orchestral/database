@@ -46,9 +46,7 @@ class MigrateCommand extends BaseCommand
         // a database for real, which is helpful for double checking migrations.
         $pretend = $this->input->getOption('pretend');
 
-        $path = $this->getMigrationPath();
-
-        $this->migrator->run($path, [
+        $this->migrator->run($this->getMigrationPaths(), [
             'pretend' => $pretend,
             'step'    => $this->input->getOption('step'),
         ]);
@@ -75,10 +73,20 @@ class MigrateCommand extends BaseCommand
      */
     protected function getMigrationPath()
     {
+        return $this->laravel->databasePath().DIRECTORY_SEPARATOR.'migrations';
+    }
+
+    /**
+     * Get the path to the migration directory.
+     *
+     * @return string
+     */
+    protected function getMigrationPaths()
+    {
         $path = $this->input->getOption('path');
 
         if (! is_null($realPath = $this->input->getOption('realpath'))) {
-            return $realPath;
+            return [$realPath];
         }
 
         // If the package is in the list of migration paths we received we will put
@@ -87,17 +95,19 @@ class MigrateCommand extends BaseCommand
         if (! is_null($package = $this->input->getOption('package'))) {
             is_null($path) && $path = 'resources/migrations';
 
-            return $this->packagePath.'/'.$package.'/'.$path;
+            return [$this->packagePath.'/'.$package.'/'.$path];
         }
 
         // First, we will check to see if a path option has been defined. If it has
         // we will use the path relative to the root of this installation folder
         // so that migrations may be run for any path within the applications.
         if (! is_null($path)) {
-            return $this->laravel['path.base'].'/'.$path;
+            return [$this->laravel['path.base'].'/'.$path];
         }
 
-        return $this->laravel['path.database'].'/migrations';
+        return array_merge(
+            [$this->getMigrationPath()], $this->migrator->paths()
+        );
     }
 
     /**
