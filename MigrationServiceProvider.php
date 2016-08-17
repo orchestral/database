@@ -3,8 +3,10 @@
 namespace Orchestra\Database;
 
 use Illuminate\Contracts\Foundation\Application;
+use Orchestra\Database\Console\Migrations\ResetCommand;
 use Orchestra\Database\Console\Migrations\MigrateCommand;
 use Orchestra\Database\Console\Migrations\RefreshCommand;
+use Orchestra\Database\Console\Migrations\RollbackCommand;
 use Illuminate\Database\MigrationServiceProvider as ServiceProvider;
 
 class MigrationServiceProvider extends ServiceProvider
@@ -17,7 +19,7 @@ class MigrationServiceProvider extends ServiceProvider
     protected function registerMigrateCommand()
     {
         $this->app->singleton('command.migrate', function (Application $app) {
-            return $this->getCommandWithPackage(new MigrateCommand($app->make('migrator'));
+            return $this->getCommandWithPackage(new MigrateCommand($app->make('migrator')));
         });
     }
 

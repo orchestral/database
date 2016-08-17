@@ -2,6 +2,7 @@
 
 namespace Orchestra\Database\Console\Migrations;
 
+use Symfony\Component\Console\Input\InputOption;
 use Illuminate\Database\Console\Migrations\RollbackCommand as BaseCommand;
 
 class RollbackCommand extends BaseCommand
