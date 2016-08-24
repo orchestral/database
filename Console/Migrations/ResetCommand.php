@@ -62,6 +62,7 @@ class ResetCommand extends BaseCommand
     {
         $options = [
             ['realpath', null, InputOption::VALUE_OPTIONAL, 'The absolute path to migration files.', null],
+            ['path', null, InputOption::VALUE_OPTIONAL, 'The path of migrations files to be executed.'],
             ['package', null, InputOption::VALUE_OPTIONAL, 'The package to migrate.', null],
         ];
 
