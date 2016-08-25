@@ -3,9 +3,9 @@
 namespace Orchestra\Database\Console\Migrations;
 
 use Symfony\Component\Console\Input\InputOption;
-use Illuminate\Database\Console\Migrations\MigrateCommand as BaseCommand;
+use Illuminate\Database\Console\Migrations\ResetCommand as BaseCommand;
 
-class MigrateCommand extends BaseCommand
+class ResetCommand extends BaseCommand
 {
     use Packages;
 
@@ -62,6 +62,7 @@ class MigrateCommand extends BaseCommand
     {
         $options = [
             ['realpath', null, InputOption::VALUE_OPTIONAL, 'The absolute path to migration files.', null],
+            ['path', null, InputOption::VALUE_OPTIONAL, 'The path of migrations files to be executed.'],
             ['package', null, InputOption::VALUE_OPTIONAL, 'The package to migrate.', null],
         ];
 

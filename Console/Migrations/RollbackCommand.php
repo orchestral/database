@@ -3,9 +3,9 @@
 namespace Orchestra\Database\Console\Migrations;
 
 use Symfony\Component\Console\Input\InputOption;
-use Illuminate\Database\Console\Migrations\MigrateCommand as BaseCommand;
+use Illuminate\Database\Console\Migrations\RollbackCommand as BaseCommand;
 
-class MigrateCommand extends BaseCommand
+class RollbackCommand extends BaseCommand
 {
     use Packages;
 
@@ -63,6 +63,7 @@ class MigrateCommand extends BaseCommand
         $options = [
             ['realpath', null, InputOption::VALUE_OPTIONAL, 'The absolute path to migration files.', null],
             ['package', null, InputOption::VALUE_OPTIONAL, 'The package to migrate.', null],
+            ['path', null, InputOption::VALUE_OPTIONAL, 'The path to migration files.', null],
         ];
 
         return array_merge($options, parent::getOptions());
