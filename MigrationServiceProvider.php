@@ -63,6 +63,7 @@ class MigrationServiceProvider extends ServiceProvider
      * Set package path for command.
      *
      * @param  object  $command
+     *
      * @return object
      */
     protected function getCommandWithPackage($command)
