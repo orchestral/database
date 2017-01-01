@@ -12,13 +12,20 @@ use Orchestra\Database\Console\Migrations\RollbackCommand;
 class ConsoleServiceProvider extends ServiceProvider
 {
     /**
+     * Indicates if loading of the provider is deferred.
+     *
+     * @var bool
+     */
+    protected $defer = true;
+
+    /**
      * Register all of the migration commands.
      *
      * @return void
      */
-    protected function registerCommands()
+    public function register()
     {
-        $commands = ['Migrate', 'Rollback', 'Reset', 'Refresh', 'Install', 'Make', 'Status'];
+        $commands = ['Migrate', 'Rollback', 'Reset', 'Refresh'];
 
         // We'll simply spin through the list of commands that are migration related
         // and register each one of them with an application container. They will
@@ -82,7 +89,7 @@ class ConsoleServiceProvider extends ServiceProvider
     protected function registerRefreshCommand()
     {
         $this->app->singleton('command.migrate.refresh', function () {
-            return $this->getCommandWithPackage(new RefreshCommand());
+            return new RefreshCommand();
         });
     }
 
