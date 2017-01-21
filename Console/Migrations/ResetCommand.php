@@ -2,25 +2,12 @@
 
 namespace Orchestra\Database\Console\Migrations;
 
-use Illuminate\Database\Migrations\Migrator;
 use Symfony\Component\Console\Input\InputOption;
 use Illuminate\Database\Console\Migrations\ResetCommand as BaseCommand;
 
 class ResetCommand extends BaseCommand
 {
     use Packages;
-
-    /**
-     * Create a new migration reset command instance.
-     *
-     * @param  \Illuminate\Database\Migrations\Migrator  $migrator
-     */
-    public function __construct(Migrator $migrator)
-    {
-        parent::__construct($migrator);
-
-        $this->specifyParameters();
-    }
 
     /**
      * Get the path to the migration directory.
@@ -73,10 +60,12 @@ class ResetCommand extends BaseCommand
      */
     protected function getOptions()
     {
-        return [
+        $options = [
             ['realpath', null, InputOption::VALUE_OPTIONAL, 'The absolute path to migration files.', null],
             ['path', null, InputOption::VALUE_OPTIONAL, 'The path of migrations files to be executed.'],
             ['package', null, InputOption::VALUE_OPTIONAL, 'The package to migrate.', null],
         ];
+
+        return array_merge($options, parent::getOptions());
     }
 }
