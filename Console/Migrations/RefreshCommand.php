@@ -8,6 +8,16 @@ use Illuminate\Database\Console\Migrations\RefreshCommand as BaseCommand;
 class RefreshCommand extends BaseCommand
 {
     /**
+     * Create a new migration refresh command instance.
+     */
+    public function __construct()
+    {
+        parent::__construct();
+
+        $this->specifyParameters();
+    }
+
+    /**
      * Execute the console command.
      *
      * @return void
