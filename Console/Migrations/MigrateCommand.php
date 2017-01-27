@@ -2,12 +2,25 @@
 
 namespace Orchestra\Database\Console\Migrations;
 
+use Illuminate\Database\Migrations\Migrator;
 use Symfony\Component\Console\Input\InputOption;
 use Illuminate\Database\Console\Migrations\MigrateCommand as BaseCommand;
 
 class MigrateCommand extends BaseCommand
 {
     use Packages;
+
+    /**
+     * Create a new migration command instance.
+     *
+     * @param  \Illuminate\Database\Migrations\Migrator  $migrator
+     */
+    public function __construct(Migrator $migrator)
+    {
+        parent::__construct($migrator);
+
+        $this->specifyParameters();
+    }
 
     /**
      * Get the path to the migration directory.
@@ -60,11 +73,9 @@ class MigrateCommand extends BaseCommand
      */
     protected function getOptions()
     {
-        $options = [
+        return [
             ['realpath', null, InputOption::VALUE_OPTIONAL, 'The absolute path to migration files.', null],
             ['package', null, InputOption::VALUE_OPTIONAL, 'The package to migrate.', null],
         ];
-
-        return array_merge($options, parent::getOptions());
     }
 }
