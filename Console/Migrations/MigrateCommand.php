@@ -39,8 +39,6 @@ class MigrateCommand extends BaseCommand
      */
     protected function getMigrationPaths()
     {
-        $path = $this->input->getOption('path');
-
         if (! is_null($realPath = $this->input->getOption('realpath'))) {
             return [$realPath];
         }
@@ -49,21 +47,19 @@ class MigrateCommand extends BaseCommand
         // the migrations in that path. Otherwise, we will assume the package is
         // is in the package directories and will place them in that location.
         if (! is_null($package = $this->input->getOption('package'))) {
-            is_null($path) && $path = 'resources/migrations';
-
-            return [$this->packagePath.'/'.$package.'/'.$path];
+            return ["{$this->packagePath}/{$package}/resources/migrations"];
         }
 
         // First, we will check to see if a path option has been defined. If it has
         // we will use the path relative to the root of this installation folder
         // so that migrations may be run for any path within the applications.
-        if (! is_null($path)) {
-            return [$this->laravel->basePath().'/'.$path];
+        if ($this->input->hasOption('path') && $this->option('path')) {
+            return collect($this->option('path'))->map(function ($path) {
+                return $this->laravel->basePath().'/'.$path;
+            })->all();
         }
 
-        return array_merge(
-            [$this->getMigrationPath()], $this->migrator->paths()
-        );
+        return array_merge([$this->getMigrationPath()], $this->migrator->paths());
     }
 
     /**
