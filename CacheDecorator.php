@@ -92,21 +92,6 @@ class CacheDecorator
     }
 
     /**
-     * Alias for the "pluck" method.
-     *
-     * @param  string  $column
-     * @param  string|null  $key
-     *
-     * @return array
-     *
-     * @deprecated since version 5.2. Use the "pluck" method directly.
-     */
-    public function lists($column, $key = null)
-    {
-        return $this->pluck($column, $key);
-    }
-
-    /**
      * Strip off the table name or alias from a column identifier.
      *
      * @param  string  $column
@@ -147,11 +132,9 @@ class CacheDecorator
      */
     public function get($columns = ['*'])
     {
-        if (! is_null($this->cacheMinutes)) {
-            return $this->getCached($columns);
-        }
-
-        return $this->getFresh($columns);
+        return ! is_null($this->cacheMinutes)
+                    ? $this->getCached($columns)
+                    : $this->getFresh($columns);
     }
 
     /**
