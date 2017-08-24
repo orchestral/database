@@ -76,16 +76,16 @@ class CacheDecorator
      * @param  string  $column
      * @param  string|null  $key
      *
-     * @return array
+     * @return \Illuminate\Support\Collection
      */
     public function pluck($column, $key = null)
     {
         $results = $this->get(is_null($key) ? [$column] : [$column, $key]);
+
         // If the columns are qualified with a table or have an alias, we cannot use
         // those directly in the "pluck" operations since the results from the DB
         // are only keyed by the column itself. We'll strip the table out here.
-        return Arr::pluck(
-            $results,
+        return $results->pluck(
             $this->stripTableForPluck($column),
             $this->stripTableForPluck($key)
         );
@@ -128,7 +128,7 @@ class CacheDecorator
      *
      * @param  array  $columns
      *
-     * @return array|static[]
+     * @return \Illuminate\Support\Collection
      */
     public function get($columns = ['*'])
     {
@@ -159,10 +159,10 @@ class CacheDecorator
         // that the value should be remembered values should be stored indefinitely
         // and if we have minutes we will use the typical remember function here.
         if ($minutes < 0) {
-            return $cache->rememberForever($key, $callback);
+            return collect($cache->rememberForever($key, $callback));
         }
 
-        return $cache->remember($key, $minutes, $callback);
+        return collect($cache->remember($key, $minutes, $callback));
     }
 
     /**
@@ -170,7 +170,7 @@ class CacheDecorator
      *
      * @param  array  $columns
      *
-     * @return array|static[]
+     * @return \Illuminate\Support\Collection
      */
     public function getFresh($columns = ['*'])
     {
@@ -219,7 +219,7 @@ class CacheDecorator
     protected function getCacheCallback($columns)
     {
         return function () use ($columns) {
-            return $this->getFresh($columns);
+            return $this->getFresh($columns)->all();
         };
     }
 
