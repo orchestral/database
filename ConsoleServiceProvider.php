@@ -4,6 +4,7 @@ namespace Orchestra\Database;
 
 use Illuminate\Support\ServiceProvider;
 use Illuminate\Contracts\Foundation\Application;
+use Orchestra\Database\Console\Migrations\FreshCommand;
 use Orchestra\Database\Console\Migrations\ResetCommand;
 use Orchestra\Database\Console\Migrations\MigrateCommand;
 use Orchestra\Database\Console\Migrations\RefreshCommand;
@@ -25,7 +26,7 @@ class ConsoleServiceProvider extends ServiceProvider
      */
     public function register()
     {
-        $commands = ['Migrate', 'Rollback', 'Reset', 'Refresh'];
+        $commands = ['Migrate', 'Fresh', 'Rollback', 'Reset', 'Refresh'];
 
         // We'll simply spin through the list of commands that are migration related
         // and register each one of them with an application container. They will
@@ -39,10 +40,23 @@ class ConsoleServiceProvider extends ServiceProvider
         // when the Artisan application actually starts up and is getting used.
         $this->commands(
             'command.migrate',
+            'command.migrate.fresh',
             'command.migrate.rollback',
             'command.migrate.reset',
             'command.migrate.refresh'
         );
+    }
+
+    /**
+     * Register the command.
+     *
+     * @return void
+     */
+    protected function registerFreshCommand()
+    {
+        $this->app->singleton('command.migrate.fresh', function () {
+            return new FreshCommand();
+        });
     }
 
     /**
