@@ -60,6 +60,7 @@ class RefreshCommand extends BaseCommand
      * @param  string  $path
      * @param  bool  $step
      * @param  bool  $force
+     *
      * @return void
      */
     protected function runRollback($database, $path, $step, $force)
@@ -79,6 +80,7 @@ class RefreshCommand extends BaseCommand
      * @param  string  $database
      * @param  string  $path
      * @param  bool  $force
+     *
      * @return void
      */
     protected function runReset($database, $paths, $force)
