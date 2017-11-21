@@ -2,7 +2,6 @@
 
 namespace Orchestra\Database;
 
-use Illuminate\Support\Arr;
 use Illuminate\Support\Collection;
 use Illuminate\Contracts\Cache\Repository;
 
@@ -39,7 +38,7 @@ class CacheDecorator
     public function __construct($query, Repository $repository)
     {
         $this->repository = $repository;
-        $this->query      = $query;
+        $this->query = $query;
     }
 
     /**
@@ -53,7 +52,7 @@ class CacheDecorator
     public function remember($minutes, $key = null)
     {
         $this->cacheMinutes = $minutes;
-        $this->cacheKey     = $key;
+        $this->cacheKey = $key;
 
         return $this;
     }

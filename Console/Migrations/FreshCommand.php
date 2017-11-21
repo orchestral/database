@@ -2,7 +2,6 @@
 
 namespace Orchestra\Database\Console\Migrations;
 
-use Illuminate\Database\Migrations\Migrator;
 use Symfony\Component\Console\Input\InputOption;
 use Illuminate\Database\Console\Migrations\FreshCommand as BaseCommand;
 
@@ -53,5 +52,4 @@ class FreshCommand extends BaseCommand
             ['seeder', null, InputOption::VALUE_OPTIONAL, 'The class name of the root seeder.'],
         ];
     }
-
 }
