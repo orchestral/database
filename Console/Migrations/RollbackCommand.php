@@ -16,10 +16,6 @@ class RollbackCommand extends BaseCommand
      */
     protected function getMigrationPaths()
     {
-        if (! is_null($realPath = $this->option('realpath'))) {
-            return [$realPath];
-        }
-
         // If the package is in the list of migration paths we received we will put
         // the migrations in that path. Otherwise, we will assume the package is
         // is in the package directories and will place them in that location.
@@ -38,7 +34,6 @@ class RollbackCommand extends BaseCommand
     protected function getOptions()
     {
         $options = [
-            ['realpath', null, InputOption::VALUE_OPTIONAL, 'The absolute path to migration files.', null],
             ['package', null, InputOption::VALUE_OPTIONAL, 'The package to migrate.', null],
         ];
 
