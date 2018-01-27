@@ -35,6 +35,12 @@ class CacheDecorator
      */
     protected $repository;
 
+    /**
+     * Construct a new decorator.
+     *
+     * @param \Illuminate\Database\Query\Builder  $query
+     * @param \Illuminate\Contracts\Cache\Repository $repository
+     */
     public function __construct($query, Repository $repository)
     {
         $this->repository = $repository;
@@ -49,7 +55,7 @@ class CacheDecorator
      *
      * @return $this
      */
-    public function remember($minutes, $key = null)
+    public function remember($minutes, ?string $key = null): self
     {
         $this->cacheMinutes = $minutes;
         $this->cacheKey = $key;
@@ -64,7 +70,7 @@ class CacheDecorator
      *
      * @return $this
      */
-    public function rememberForever($key = null)
+    public function rememberForever(?string $key = null): self
     {
         return $this->remember(-1, $key);
     }
@@ -77,7 +83,7 @@ class CacheDecorator
      *
      * @return \Illuminate\Support\Collection
      */
-    public function pluck($column, $key = null)
+    public function pluck(string $column, ?string $key = null): Collection
     {
         $results = $this->get(is_null($key) ? [$column] : [$column, $key]);
 
@@ -97,7 +103,7 @@ class CacheDecorator
      *
      * @return string|null
      */
-    protected function stripTableForPluck($column)
+    protected function stripTableForPluck(string $column): ?string
     {
         return is_null($column) ? $column : last(preg_split('~\.| ~', $column));
     }
@@ -129,7 +135,7 @@ class CacheDecorator
      *
      * @return \Illuminate\Support\Collection
      */
-    public function get($columns = ['*'])
+    public function get($columns = ['*']): Collection
     {
         return ! is_null($this->cacheMinutes)
                     ? $this->getCached($columns)
@@ -141,9 +147,9 @@ class CacheDecorator
      *
      * @param  array  $columns
      *
-     * @return array
+     * @return \Illuminate\Support\Collection
      */
-    public function getCached($columns = ['*'])
+    public function getCached($columns = ['*']): Collection
     {
         // If the query is requested to be cached, we will cache it using a unique key
         // for this database connection and query statement, including the bindings
@@ -171,7 +177,7 @@ class CacheDecorator
      *
      * @return \Illuminate\Support\Collection
      */
-    public function getFresh($columns = ['*'])
+    public function getFresh($columns = ['*']): Collection
     {
         return $this->query->get($columns);
     }
@@ -181,7 +187,7 @@ class CacheDecorator
      *
      * @return string
      */
-    public function getCacheKey()
+    public function getCacheKey(): string
     {
         return $this->cacheKey ?: $this->generateCacheKey();
     }
@@ -191,7 +197,7 @@ class CacheDecorator
      *
      * @return string
      */
-    public function generateCacheKey()
+    public function generateCacheKey(): string
     {
         $name = $this->getConnection()->getName();
 
@@ -203,7 +209,7 @@ class CacheDecorator
      *
      * @return \Illuminate\Contracts\Cache\Repository
      */
-    protected function getCache()
+    protected function getCache(): Repository
     {
         return $this->repository;
     }
@@ -227,7 +233,7 @@ class CacheDecorator
      *
      * @return array
      */
-    protected function getCacheInfo()
+    protected function getCacheInfo(): array
     {
         return [$this->getCacheKey(), $this->cacheMinutes];
     }
@@ -240,7 +246,7 @@ class CacheDecorator
      *
      * @return mixed
      */
-    public function __call($method, $parameters)
+    public function __call(string $method, array $parameters)
     {
         return $this->query->{$method}(...$parameters);
     }

@@ -18,7 +18,7 @@ trait Packages
      *
      * @return $this
      */
-    public function setPackagePath($packagePath)
+    public function setPackagePath(string $packagePath): self
     {
         $this->packagePath = $packagePath;
 
@@ -32,7 +32,7 @@ trait Packages
      *
      * @return array
      */
-    protected function getPackageMigrationPaths($package)
+    protected function getPackageMigrationPaths(string $package): array
     {
         return collect($this->option('path') ?: 'resources/migrations')
                     ->map(function ($path) use ($package) {
