@@ -55,7 +55,7 @@ class CacheDecorator
      *
      * @return $this
      */
-    public function remember($minutes, ?string $key = null): self
+    public function remember($minutes, ?string $key = null)
     {
         $this->cacheMinutes = $minutes;
         $this->cacheKey = $key;
@@ -70,7 +70,7 @@ class CacheDecorator
      *
      * @return $this
      */
-    public function rememberForever(?string $key = null): self
+    public function rememberForever(?string $key = null)
     {
         return $this->remember(-1, $key);
     }
