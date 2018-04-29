@@ -18,7 +18,7 @@ trait Packages
      *
      * @return $this
      */
-    public function setPackagePath(string $packagePath): self
+    public function setPackagePath(string $packagePath)
     {
         $this->packagePath = $packagePath;
 
