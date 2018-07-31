@@ -22,13 +22,13 @@
     },
     "require": {
         "php": ">=7.1",
-        "illuminate/contracts": "~5.7.0",
-        "illuminate/database": "~5.7.0",
-        "illuminate/support": "~5.7.0"
+        "illuminate/contracts": "dev-master",
+        "illuminate/database": "dev-master",
+        "illuminate/support": "dev-master"
     },
     "extra": {
         "branch-alias": {
-            "dev-master": "3.7-dev"
+            "dev-master": "3.8-dev"
         }
     },
     "support": {
