@@ -85,7 +85,7 @@ class CacheDecorator
      */
     public function pluck(string $column, ?string $key = null): Collection
     {
-        $results = $this->get(is_null($key) ? [$column] : [$column, $key]);
+        $results = $this->get(\is_null($key) ? [$column] : [$column, $key]);
 
         // If the columns are qualified with a table or have an alias, we cannot use
         // those directly in the "pluck" operations since the results from the DB
@@ -105,7 +105,7 @@ class CacheDecorator
      */
     protected function stripTableForPluck(string $column): ?string
     {
-        return is_null($column) ? $column : last(preg_split('~\.| ~', $column));
+        return \is_null($column) ? $column : \last(\preg_split('~\.| ~', $column));
     }
 
     /**
@@ -125,7 +125,7 @@ class CacheDecorator
             return $results->first();
         }
 
-        return count($results) > 0 ? reset($results) : null;
+        return \count($results) > 0 ? \reset($results) : null;
     }
 
     /**
@@ -137,7 +137,7 @@ class CacheDecorator
      */
     public function get($columns = ['*']): Collection
     {
-        return ! is_null($this->cacheMinutes)
+        return ! \is_null($this->cacheMinutes)
                     ? $this->getCached($columns)
                     : $this->getFresh($columns);
     }
@@ -164,10 +164,10 @@ class CacheDecorator
         // that the value should be remembered values should be stored indefinitely
         // and if we have minutes we will use the typical remember function here.
         if ($minutes < 0) {
-            return collect($cache->rememberForever($key, $callback));
+            return \collect($cache->rememberForever($key, $callback));
         }
 
-        return collect($cache->remember($key, $minutes, $callback));
+        return \collect($cache->remember($key, $minutes, $callback));
     }
 
     /**
@@ -201,7 +201,7 @@ class CacheDecorator
     {
         $name = $this->getConnection()->getName();
 
-        return md5($name.$this->toSql().serialize($this->getBindings()));
+        return \md5($name.$this->toSql().\serialize($this->getBindings()));
     }
 
     /**
