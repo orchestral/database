@@ -54,7 +54,7 @@ class ConsoleServiceProvider extends ServiceProvider
      */
     protected function registerFreshCommand()
     {
-        $this->app->singleton('command.migrate.fresh', function () {
+        $this->app->singleton('command.migrate.fresh', static function () {
             return new FreshCommand();
         });
     }
@@ -102,7 +102,7 @@ class ConsoleServiceProvider extends ServiceProvider
      */
     protected function registerRefreshCommand()
     {
-        $this->app->singleton('command.migrate.refresh', function () {
+        $this->app->singleton('command.migrate.refresh', static function () {
             return new RefreshCommand();
         });
     }
