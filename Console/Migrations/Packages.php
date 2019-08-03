@@ -34,9 +34,11 @@ trait Packages
      */
     protected function getPackageMigrationPaths(string $package): array
     {
+        $packagePath = $this->packagePath;
+
         return \collect($this->option('path') ?: 'database/migrations')
-                    ->map(function ($path) use ($package) {
-                        return $this->packagePath.'/'.$package.'/'.$path;
+                    ->map(static function ($path) use ($packagePath, $package) {
+                        return $packagePath.'/'.$package.'/'.$path;
                     })->all();
     }
 }
