@@ -154,7 +154,7 @@ class CacheDecorator
         // If the query is requested to be cached, we will cache it using a unique key
         // for this database connection and query statement, including the bindings
         // that are used on this query, providing great convenience when caching.
-        list($key, $minutes) = $this->getCacheInfo();
+        [$key, $minutes] = $this->getCacheInfo();
 
         $cache = $this->getCache();
 
@@ -164,10 +164,10 @@ class CacheDecorator
         // that the value should be remembered values should be stored indefinitely
         // and if we have minutes we will use the typical remember function here.
         if ($minutes < 0) {
-            return \collect($cache->rememberForever($key, $callback));
+            return Collection::make($cache->rememberForever($key, $callback));
         }
 
-        return \collect($cache->remember($key, $minutes, $callback));
+        return Collection::make($cache->remember($key, $minutes, $callback));
     }
 
     /**
