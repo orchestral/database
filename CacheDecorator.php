@@ -105,7 +105,7 @@ class CacheDecorator
      */
     protected function stripTableForPluck(string $column): ?string
     {
-        return \is_null($column) ? $column : \last(\preg_split('~\.| ~', $column));
+        return \is_null($column) ? $column : \end(\preg_split('~\.| ~', $column));
     }
 
     /**
