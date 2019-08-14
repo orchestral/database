@@ -2,6 +2,7 @@
 
 namespace Orchestra\Database;
 
+use Throwable;
 use Illuminate\Support\Collection;
 use Illuminate\Contracts\Cache\Repository;
 
@@ -105,7 +106,7 @@ class CacheDecorator
      */
     protected function stripTableForPluck(string $column): ?string
     {
-        return \is_null($column) ? $column : \last(\preg_split('~\.| ~', $column));
+        return \is_null($column) ? $column : \end(\preg_split('~\.| ~', $column));
     }
 
     /**
@@ -137,9 +138,15 @@ class CacheDecorator
      */
     public function get($columns = ['*']): Collection
     {
-        return ! \is_null($this->cacheMinutes)
-                    ? $this->getCached($columns)
-                    : $this->getFresh($columns);
+        try {
+            if (! \is_null($this->cacheMinutes)) {
+                return $this->getCached($columns);
+            }
+        } catch (Throwable $e) {
+            //
+        }
+
+        return $this->getFresh($columns);
     }
 
     /**
@@ -154,7 +161,7 @@ class CacheDecorator
         // If the query is requested to be cached, we will cache it using a unique key
         // for this database connection and query statement, including the bindings
         // that are used on this query, providing great convenience when caching.
-        list($key, $minutes) = $this->getCacheInfo();
+        [$key, $minutes] = $this->getCacheInfo();
 
         $cache = $this->getCache();
 
@@ -164,10 +171,10 @@ class CacheDecorator
         // that the value should be remembered values should be stored indefinitely
         // and if we have minutes we will use the typical remember function here.
         if ($minutes < 0) {
-            return \collect($cache->rememberForever($key, $callback));
+            return Collection::make($cache->rememberForever($key, $callback));
         }
 
-        return \collect($cache->remember($key, $minutes, $callback));
+        return Collection::make($cache->remember($key, $minutes, $callback));
     }
 
     /**
