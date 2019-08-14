@@ -2,6 +2,7 @@
 
 namespace Orchestra\Database;
 
+use Throwable;
 use Illuminate\Support\Collection;
 use Illuminate\Contracts\Cache\Repository;
 
@@ -137,9 +138,15 @@ class CacheDecorator
      */
     public function get($columns = ['*']): Collection
     {
-        return ! \is_null($this->cacheMinutes)
-                    ? $this->getCached($columns)
-                    : $this->getFresh($columns);
+        try {
+            if (! \is_null($this->cacheMinutes)) {
+                return $this->getCached($columns);
+            }
+        } catch (Throwable $e) {
+            //
+        }
+
+        return $this->getFresh($columns);
     }
 
     /**
