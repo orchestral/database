@@ -3,22 +3,16 @@
 namespace Orchestra\Database;
 
 use Illuminate\Support\ServiceProvider;
-use Illuminate\Contracts\Foundation\Application;
+use Illuminate\Contracts\Container\Container;
+use Illuminate\Contracts\Support\DeferrableProvider;
 use Orchestra\Database\Console\Migrations\FreshCommand;
 use Orchestra\Database\Console\Migrations\ResetCommand;
 use Orchestra\Database\Console\Migrations\MigrateCommand;
 use Orchestra\Database\Console\Migrations\RefreshCommand;
 use Orchestra\Database\Console\Migrations\RollbackCommand;
 
-class ConsoleServiceProvider extends ServiceProvider
+class ConsoleServiceProvider extends ServiceProvider implements DeferrableProvider
 {
-    /**
-     * Indicates if loading of the provider is deferred.
-     *
-     * @var bool
-     */
-    protected $defer = true;
-
     /**
      * Register all of the migration commands.
      *
@@ -66,7 +60,7 @@ class ConsoleServiceProvider extends ServiceProvider
      */
     protected function registerMigrateCommand()
     {
-        $this->app->singleton('command.migrate', function (Application $app) {
+        $this->app->singleton('command.migrate', function (Container $app) {
             return $this->getCommandWithPackage(new MigrateCommand($app->make('migrator')));
         });
     }
@@ -78,7 +72,7 @@ class ConsoleServiceProvider extends ServiceProvider
      */
     protected function registerRollbackCommand()
     {
-        $this->app->singleton('command.migrate.rollback', function ($app) {
+        $this->app->singleton('command.migrate.rollback', function (Container $app) {
             return $this->getCommandWithPackage(new RollbackCommand($app->make('migrator')));
         });
     }
@@ -90,7 +84,7 @@ class ConsoleServiceProvider extends ServiceProvider
      */
     protected function registerResetCommand()
     {
-        $this->app->singleton('command.migrate.reset', function ($app) {
+        $this->app->singleton('command.migrate.reset', function (Container $app) {
             return $this->getCommandWithPackage(new ResetCommand($app->make('migrator')));
         });
     }
