@@ -2,9 +2,9 @@
 
 namespace Orchestra\Database;
 
-use Throwable;
-use Illuminate\Support\Collection;
 use Illuminate\Contracts\Cache\Repository;
+use Illuminate\Support\Collection;
+use Throwable;
 
 class CacheDecorator
 {

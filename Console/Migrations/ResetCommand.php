@@ -2,8 +2,8 @@
 
 namespace Orchestra\Database\Console\Migrations;
 
-use Symfony\Component\Console\Input\InputOption;
 use Illuminate\Database\Console\Migrations\ResetCommand as BaseCommand;
+use Symfony\Component\Console\Input\InputOption;
 
 class ResetCommand extends BaseCommand
 {
