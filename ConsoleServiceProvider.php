@@ -2,13 +2,13 @@
 
 namespace Orchestra\Database;
 
-use Illuminate\Support\ServiceProvider;
 use Illuminate\Contracts\Container\Container;
 use Illuminate\Contracts\Support\DeferrableProvider;
+use Illuminate\Support\ServiceProvider;
 use Orchestra\Database\Console\Migrations\FreshCommand;
-use Orchestra\Database\Console\Migrations\ResetCommand;
 use Orchestra\Database\Console\Migrations\MigrateCommand;
 use Orchestra\Database\Console\Migrations\RefreshCommand;
+use Orchestra\Database\Console\Migrations\ResetCommand;
 use Orchestra\Database\Console\Migrations\RollbackCommand;
 
 class ConsoleServiceProvider extends ServiceProvider implements DeferrableProvider

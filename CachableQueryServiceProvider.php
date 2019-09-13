@@ -2,9 +2,9 @@
 
 namespace Orchestra\Database;
 
-use Illuminate\Support\ServiceProvider;
-use Illuminate\Database\Query\Builder as QueryBuilder;
 use Illuminate\Database\Eloquent\Builder as EloquentBuilder;
+use Illuminate\Database\Query\Builder as QueryBuilder;
+use Illuminate\Support\ServiceProvider;
 
 class CachableQueryServiceProvider extends ServiceProvider
 {

@@ -2,9 +2,9 @@
 
 namespace Orchestra\Database\Console\Migrations;
 
+use Illuminate\Database\Console\Migrations\MigrateCommand as BaseCommand;
 use Illuminate\Database\Migrations\Migrator;
 use Symfony\Component\Console\Input\InputOption;
-use Illuminate\Database\Console\Migrations\MigrateCommand as BaseCommand;
 
 class MigrateCommand extends BaseCommand
 {
