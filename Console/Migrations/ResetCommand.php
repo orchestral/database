@@ -19,7 +19,7 @@ class ResetCommand extends BaseCommand
         // If the package is in the list of migration paths we received we will put
         // the migrations in that path. Otherwise, we will assume the package is
         // is in the package directories and will place them in that location.
-        if (! is_null($package = $this->option('package'))) {
+        if (! \is_null($package = $this->option('package'))) {
             return $this->getPackageMigrationPaths($package);
         }
 
@@ -37,6 +37,6 @@ class ResetCommand extends BaseCommand
             ['package', null, InputOption::VALUE_OPTIONAL, 'The package to migrate.', null],
         ];
 
-        return array_merge($options, parent::getOptions());
+        return \array_merge($options, parent::getOptions());
     }
 }

@@ -32,7 +32,7 @@ class MigrateCommand extends BaseCommand
         // If the package is in the list of migration paths we received we will put
         // the migrations in that path. Otherwise, we will assume the package is
         // is in the package directories and will place them in that location.
-        if (! is_null($package = $this->option('package'))) {
+        if (! \is_null($package = $this->option('package'))) {
             return $this->getPackageMigrationPaths($package);
         }
 
