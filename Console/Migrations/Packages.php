@@ -2,6 +2,8 @@
 
 namespace Orchestra\Database\Console\Migrations;
 
+use Illuminate\Support\Collection;
+
 trait Packages
 {
     /**
@@ -36,7 +38,7 @@ trait Packages
     {
         $packagePath = $this->packagePath;
 
-        return \collect($this->option('path') ?: 'database/migrations')
+        return Collection::make($this->option('path') ?: 'database/migrations')
                     ->map(static function ($path) use ($packagePath, $package) {
                         return $packagePath.'/'.$package.'/'.$path;
                     })->all();
