@@ -30,6 +30,11 @@
     "extra": {
         "branch-alias": {
             "dev-master": "5.0-dev"
+        },
+        "laravel": {
+            "providers": [
+                "Orchestra\\Database\\SearchServiceProvider"
+            ]
         }
     },
     "support": {
