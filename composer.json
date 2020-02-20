@@ -21,11 +21,11 @@
         }
     },
     "require": {
-        "php": ">=7.2",
-        "illuminate/contracts": "^7.0",
-        "illuminate/database": "^7.0",
-        "illuminate/support": "^7.0",
-        "laravie/query-filter": "^1.6.1"
+        "php": ">=7.3",
+        "illuminate/contracts": "^8.0",
+        "illuminate/database": "^8.0",
+        "illuminate/support": "^8.0",
+        "laravie/query-filter": "dev-master"
     },
     "extra": {
         "branch-alias": {
