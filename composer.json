@@ -26,6 +26,9 @@
         "illuminate/database": "^6.0",
         "illuminate/support": "^6.0"
     },
+    "suggest": {
+        "laravie/query-filter": "Allow to use whereLike query builder macros with Laravel (^1.5)."
+    },
     "extra": {
         "branch-alias": {
             "dev-master": "5.0-dev"
