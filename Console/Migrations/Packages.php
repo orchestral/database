@@ -16,8 +16,6 @@ trait Packages
     /**
      * Set package path.
      *
-     * @param  string  $packagePath
-     *
      * @return $this
      */
     public function setPackagePath(string $packagePath)
@@ -29,10 +27,6 @@ trait Packages
 
     /**
      * Get the path to the package migration directory.
-     *
-     * @param  string  $package
-     *
-     * @return array
      */
     protected function getPackageMigrationPaths(string $package): array
     {
