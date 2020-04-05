@@ -14,19 +14,19 @@ class CachableQueryServiceProvider extends ServiceProvider
     public function register()
     {
         QueryBuilder::macro('remember', function ($duration, $key = null) {
-            return (new CacheDecorator($this, $this->app->make('cache.store')))->remember($duration, $key);
+            return (new CacheDecorator($this, \app('cache.store')))->remember($duration, $key);
         });
 
         QueryBuilder::macro('rememberForever', function ($key = null) {
-            return (new CacheDecorator($this, $this->app->make('cache.store')))->rememberForever($key);
+            return (new CacheDecorator($this, \app('cache.store')))->rememberForever($key);
         });
 
         EloquentBuilder::macro('remember', function ($duration, $key = null) {
-            return (new CacheDecorator($this, $this->app->make('cache.store')))->remember($duration, $key);
+            return (new CacheDecorator($this, \app('cache.store')))->remember($duration, $key);
         });
 
         EloquentBuilder::macro('rememberForever', function ($key = null) {
-            return (new CacheDecorator($this, $this->app->make('cache.store')))->rememberForever($key);
+            return (new CacheDecorator($this, \app('cache.store')))->rememberForever($key);
         });
     }
 }

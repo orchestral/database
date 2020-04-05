@@ -40,7 +40,6 @@ class CacheDecorator
      * Construct a new decorator.
      *
      * @param \Illuminate\Database\Query\Builder  $query
-     * @param \Illuminate\Contracts\Cache\Repository $repository
      */
     public function __construct($query, Repository $repository)
     {
@@ -78,11 +77,6 @@ class CacheDecorator
 
     /**
      * Get an array with the values of a given column.
-     *
-     * @param  string  $column
-     * @param  string|null  $key
-     *
-     * @return \Illuminate\Support\Collection
      */
     public function pluck(string $column, ?string $key = null): Collection
     {
@@ -99,10 +93,6 @@ class CacheDecorator
 
     /**
      * Strip off the table name or alias from a column identifier.
-     *
-     * @param  string  $column
-     *
-     * @return string|null
      */
     protected function stripTableForPluck(string $column): ?string
     {
@@ -133,8 +123,6 @@ class CacheDecorator
      * Execute the query as a "select" statement.
      *
      * @param  array  $columns
-     *
-     * @return \Illuminate\Support\Collection
      */
     public function get($columns = ['*']): Collection
     {
@@ -153,8 +141,6 @@ class CacheDecorator
      * Execute the query as a cached "select" statement.
      *
      * @param  array  $columns
-     *
-     * @return \Illuminate\Support\Collection
      */
     public function getCached($columns = ['*']): Collection
     {
@@ -181,8 +167,6 @@ class CacheDecorator
      * Execute the query as a fresh "select" statement.
      *
      * @param  array  $columns
-     *
-     * @return \Illuminate\Support\Collection
      */
     public function getFresh($columns = ['*']): Collection
     {
@@ -191,8 +175,6 @@ class CacheDecorator
 
     /**
      * Get a unique cache key for the complete query.
-     *
-     * @return string
      */
     public function getCacheKey(): string
     {
@@ -201,8 +183,6 @@ class CacheDecorator
 
     /**
      * Generate the unique cache key for the query.
-     *
-     * @return string
      */
     public function generateCacheKey(): string
     {
@@ -213,8 +193,6 @@ class CacheDecorator
 
     /**
      * Get the cache object with tags assigned, if applicable.
-     *
-     * @return \Illuminate\Contracts\Cache\Repository
      */
     protected function getCache(): Repository
     {
@@ -237,8 +215,6 @@ class CacheDecorator
 
     /**
      * Get the cache key and cache minutes as an array.
-     *
-     * @return array
      */
     protected function getCacheInfo(): array
     {
@@ -247,9 +223,6 @@ class CacheDecorator
 
     /**
      * Handle dynamic method calls into the method.
-     *
-     * @param  string  $method
-     * @param  array   $parameters
      *
      * @return mixed
      */
