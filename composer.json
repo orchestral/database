@@ -22,10 +22,10 @@
     },
     "require": {
         "php": ">=7.3",
-        "illuminate/contracts": "^8.0",
-        "illuminate/database": "^8.0",
-        "illuminate/support": "^8.0",
-        "laravie/query-filter": "^2.0"
+        "illuminate/contracts": "^9.0",
+        "illuminate/database": "^9.0",
+        "illuminate/support": "^9.0",
+        "laravie/query-filter": "dev-master"
     },
     "suggest": {
         "laravie/query-filter": "Allow to use whereLike query builder macros with Laravel (^1.5)."
