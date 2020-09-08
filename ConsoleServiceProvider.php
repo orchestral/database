@@ -61,7 +61,9 @@ class ConsoleServiceProvider extends ServiceProvider implements DeferrableProvid
     protected function registerMigrateCommand()
     {
         $this->app->singleton('command.migrate', function (Container $app) {
-            return $this->getCommandWithPackage(new MigrateCommand($app->make('migrator')));
+            return $this->getCommandWithPackage(
+                new MigrateCommand($app->make('migrator'), $app->make('events'))
+            );
         });
     }
 
