@@ -2,6 +2,7 @@
 
 namespace Orchestra\Database\Console\Migrations;
 
+use Illuminate\Contracts\Events\Dispatcher;
 use Illuminate\Database\Console\Migrations\MigrateCommand as BaseCommand;
 use Illuminate\Database\Migrations\Migrator;
 use Symfony\Component\Console\Input\InputOption;
@@ -13,9 +14,9 @@ class MigrateCommand extends BaseCommand
     /**
      * Create a new migration command instance.
      */
-    public function __construct(Migrator $migrator)
+    public function __construct(Migrator $migrator, Dispatcher $dispatcher)
     {
-        parent::__construct($migrator);
+        parent::__construct($migrator, $dispatcher);
 
         $this->specifyParameters();
     }
