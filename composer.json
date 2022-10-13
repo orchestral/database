@@ -26,9 +26,7 @@
         "laravie/query-filter": "Allow to use whereLike query builder macros with Laravel (dev-master)."
     },
     "extra": {
-        "branch-alias": {
-            "dev-master": "7.0-dev"
-        },
+      
         "laravel": {
             "providers": [
                 "Orchestra\\Database\\CachableQueryServiceProvider",
