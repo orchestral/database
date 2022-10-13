@@ -1,18 +1,13 @@
 {
-    "name": "orchestra/database",
+    "name": "orchestra/database-update",
     "description": "Database Component for Orchestra Platform",
     "keywords": ["orchestra-platform", "orchestral", "database"],
     "license": "MIT",
     "authors": [
         {
-            "name": "Taylor Otwell",
-            "email": "taylorotwell@gmail.com",
-            "homepage": "https://github.com/taylorotwell"
-        },
-        {
-            "name": "Mior Muhammad Zaki",
-            "email": "crynobone@gmail.com",
-            "homepage": "https://github.com/crynobone"
+            "name": "Syed Ghazanfar",
+            "email": "hafizghazanfar499@gmail.com",
+            "homepage": "https://github.com/SyedGhazanfar/database"
         }
     ],
     "autoload": {
@@ -21,18 +16,18 @@
         }
     },
     "require": {
-        "php": "^7.4 || ^8.0",
-        "illuminate/contracts": "^9.0",
-        "illuminate/database": "^9.0",
-        "illuminate/support": "^9.0",
-        "laravie/query-filter": "dev-master"
+         "php": "^7.4 || ^8.0 || ^8.1",
+        "illuminate/contracts": "10.x-dev",
+        "illuminate/database": "10.x-dev",
+        "illuminate/support": "10.x-dev",
+        "laravie-update/query-filter": "3.x-dev"
     },
     "suggest": {
         "laravie/query-filter": "Allow to use whereLike query builder macros with Laravel (dev-master)."
     },
     "extra": {
         "branch-alias": {
-            "dev-master": "7.0-dev"
+            "dev-master": "dev-master"
         },
         "laravel": {
             "providers": [
@@ -42,7 +37,7 @@
         }
     },
     "support": {
-        "issues": "https://github.com/orchestral/kernel/issues"
+        "issues": "https://github.com/SyedGhazanfar/database/pulls"
     },
     "config": {
         "sort-packages": true
