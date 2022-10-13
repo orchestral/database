@@ -23,7 +23,7 @@
         "laravie-update/query-filter": "3.x-dev"
     },
     "suggest": {
-        "laravie/query-filter": "Allow to use whereLike query builder macros with Laravel (dev-master)."
+        "laravie-update/query-filter": "Allow to use whereLike query builder macros with Laravel (dev-master)."
     },
     "extra": {
       
