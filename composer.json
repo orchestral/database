@@ -17,9 +17,9 @@
     },
     "require": {
          "php": "^7.4 || ^8.0 || ^8.1",
-        "illuminate/contracts": "10.x-dev",
-        "illuminate/database": "10.x-dev",
-        "illuminate/support": "10.x-dev",
+        "illuminate/contracts": "^9.35",
+        "illuminate/database": "^9.35",
+        "illuminate/support": "^9.35",
         "laravie-update/query-filter": "3.x-dev"
     },
     "suggest": {
