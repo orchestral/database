@@ -1,5 +1,5 @@
 {
-    "name": "orchestra/database",
+    "name": "andychukse/database",
     "description": "Database Component for Orchestra Platform",
     "keywords": ["orchestra-platform", "orchestral", "database"],
     "license": "MIT",
